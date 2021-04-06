@@ -1,0 +1,16 @@
+<h1>Users#index</h1>
+<p>Find me in app/views/users/index.html.erb</p>
+
+<% @entries.each do |entry| %>
+  <% if entry.client == current_client %>
+    <div>
+      <div>
+        <div>
+          <p><%= entry.job.title %></p>
+          <p><%= entry.created_at %></p>
+        </div>
+        <p>氏名：<%= link_to entry.user.familyName + entry.user.lastName, user_path(entry.user) %></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>

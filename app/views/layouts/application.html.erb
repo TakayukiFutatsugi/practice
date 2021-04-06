@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Again</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+    <div class="ui borderless huge blue inverted menu">
+      <div class="ui container">
+        <% if user_signed_in? %>
+          <div class="item">
+            <h1><%= current_user.familyName + current_user.lastName %>様</h1>
+          </div>
+          <div class="right menu">
+            <%= link_to "ホーム", jobs_path, class:"item" %>
+            <%= link_to "プロフィール編集", edit_user_registration_path, class:"item" %>
+            <a class="item">お問合せ</a>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"item" %>
+          </div>  
+        <% elsif client_signed_in? %>
+          <div class="item">
+            <h1><%= current_client.name %>様</h1>
+          </div>
+          <div class="right menu">
+            <%= link_to "ホーム", jobs_path, class:"item" %>
+            <%= link_to "応募者一覧", users_path, class:"item" %>
+            <%= link_to "プロフィール編集", edit_client_registration_path, class:"item" %>
+            <a class="item">お問合せ</a>
+            <%= link_to "ログアウト", destroy_client_session_path, method: :delete, class:"item" %>
+          </div>  
+        <% else %>
+          <div class="item">
+            <h1>Nemmy</h1>
+          </div>
+          <div class="right menu">
+            <%= link_to "ホーム", jobs_path, class:"item" %>
+            <a class="item">お問合せ</a>
+            <%= link_to "求職者の方", new_user_session_path, class:"item" %>
+            <%= link_to "採用担当の方", new_client_session_path, class:"item" %>
+          </div>  
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="ui container">
+      </br>
+      <%= yield %>
+      </br>
+      </br>
+      </br>
+      <p>&copy;Nemmy</p>
+      </br>
+      </br>
+      </br>
+    </div>
+  </body>
+</html>

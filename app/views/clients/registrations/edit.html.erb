@@ -1,0 +1,96 @@
+<h2>会社プロフィール編集 </h2>
+</br>
+<div class="ui form">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "clients/shared/error_messages", resource: resource %>
+  
+    <div class="two fields">
+      <div class="field">
+        <%= f.label :会社名 %>
+        <%= f.text_field :name %>
+      </div>
+      <div class="field">
+        <%= f.label :ホームページ %>
+        <%= f.text_field :homepage %>
+      </div>
+    </div>
+    
+    </br>
+    
+    <div class="two fields">
+      <div class="field">
+        <%= f.label :業界 %>
+        <%= f.text_field :industry %>
+      </div>
+      <div class="field">
+        <%= f.label :事業内容 %>
+        <%= f.text_field :business %>
+      </div>
+    </div>
+    
+    </br>
+    
+    <div class="two fields">
+      <div class="field">
+        <%= f.label :従業員数 %>
+        <%= f.text_field :staff %>
+      </div>
+      <div class="field">
+        <%= f.label :本社所在地 %>
+        <%= f.text_field :address %>
+      </div>
+    </div>
+    
+    </br>
+    
+    <div class="field">
+      <%= f.label :会社紹介 %>
+      <%= f.text_area :introduction %>
+    </div>
+    
+    </br>
+    
+    <div class="field">
+      <%= f.label :メールアドレス %>
+      <%= f.email_field :email, autocomplete: "email" %>
+    </div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+  
+    </br>
+    
+    <div class="two fields">
+      <div class="field">
+        <label>新しいパスワード(変更の必要がなければ空白のままで問題ございません)</label>
+        <%= f.password_field :password, autocomplete: "new-password" %>
+        <% if @minimum_password_length %>
+          <%= @minimum_password_length %> 文字以上
+        <% end %>
+      </div>
+      <div class="field">
+        <%= f.label :新しいパスワード確認 %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+    </div>
+  
+    </br>
+    
+    <div class="field">
+      <label>現在のパスワード(変更を確定するために現在のパスワードを入力してください)</label>
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit "更新を保存", class:"ui blue button right floated" %>
+    </div>
+<% end %>
+</div>
+
+</br>
+</br>
+</br>
+
+<h3>アカウントの削除</h3>
+</br>
+<%= link_to "アカウントの削除", registration_path(resource_name), data: { confirm: "削除してよろしいですか？" }, method: :delete, class:"ui blue basic button" %>

@@ -1,0 +1,48 @@
+<h2>求人一覧</h2>
+</br>
+
+<div class="ui grid">
+  <% @jobs.each do |job| %>
+    <div class="four wide column">
+      <div class="ui card">
+        <div class="content">
+          <div class="header">
+            <%= job.title %>
+          </div>
+        </div>
+        
+        <div class="content">
+          <h3 class="ui sub header"><%= job.client.name %></h3>
+          <div class="ui feed">
+            <%= job.created_at %>
+            <%= job.status %>
+            <%= job.monthlyOrAnnual %>
+            <%= job.salary %>
+            <%= job.benefitProgram %>
+            <%= job.holiday %>
+            <%= truncate job.description, length: 50, omission: '...' %>
+          </div>
+        </div>
+        
+        <div class="content">
+          <div class="ui grid right floated">
+            <% if user_signed_in? %>
+              <%= link_to "詳細", job_path(job), class:"ui blue tiny button" %>
+              <%= link_to "応募", job_entries_path(job), method: :post, class:"ui blue tiny button" %>
+            <% elsif job.client == current_client %>
+              <%= link_to "削除", job_path(job), method: :delete, class:"ui blue basic tiny button" %>
+              <%= link_to "詳細", job_path(job), class:"ui blue tiny button" %>
+              <%= link_to "編集", edit_job_path(job), class:"ui blue tiny button" %>
+            <% else %>
+              <%= link_to "詳細", job_path(job), class:"ui blue tiny button" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>  
+  <% end %>
+</div>
+
+<% if client_signed_in? %>
+  <%= link_to "新規投稿", new_job_path, class:"ui blue button right floated" %>
+<% end %>

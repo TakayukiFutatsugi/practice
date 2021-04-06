@@ -1,0 +1,9 @@
+<p><%= @job.title %></p>
+  <% if user_signed_in? %>
+    <p>応募</p>
+  <% elsif @job.client_id == current_client.id %>
+    <p><%= link_to "編集", edit_job_path(@job) %></p>
+    <p><%= link_to "削除", job_path(@job), method: :delete %></p>
+  <% else %>
+    <p></p>
+  <% end %>  

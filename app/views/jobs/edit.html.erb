@@ -1,0 +1,111 @@
+<h2>求人情報編集</h2>
+</br>
+
+<div class="ui form">
+  <%= form_with model:@job do |f| %>
+
+    <div class="field">
+      <%= f.label :タイトル %>
+      <%= f.text_field :title %>
+    </div>
+    
+    </br>
+    
+    <div class="two fields">
+      <div class="field">
+        <%= f.label :雇用形態 %>
+        <%= f.select :status, Job.statuses.keys, {} %>
+      </div>
+      <div class="field">
+        <%= f.label :想定給与 %>
+        <%= f.text_field :salary %>
+      </div>
+    </div>
+    
+    </br>
+    
+    <div class="two fields">
+      <div class="field">
+        <%= f.label :福利厚生 %>
+        <%= f.text_field :benefitProgram  %>
+      </div>
+      <div class="field">
+        <%= f.label :休日休暇 %>
+        <%= f.text_field :holiday %>
+      </div>
+    </div>  
+    
+    </br>
+    
+    <div class="field">
+      <%= f.label :研修・育成制度 %>
+      <%= f.text_field :training %>
+    </div>
+  
+    </br>
+  
+    <div class="two fields">
+      <div class="field">
+        <%= f.label :主に使用する言語 %>
+        <%= f.select :language, Job.languages.keys, {} %>
+      </div>
+      <div class="field">
+        <%= f.label :主に使用するフレームワーク %>
+        <%= f.select :framework, Job.frameworks.keys, {} %>
+      </div>
+    </div>
+    
+    </br>
+    
+    <div class="field">
+      <%= f.label :求める人物像 %>
+      <%= f.text_field :characteristics %>
+    </div>
+    
+    </br>
+    
+    <div class="field">
+      <%= f.label :歓迎スキル %>
+      <%= f.text_field :skillset %>
+    </div>
+    
+    </br>
+    
+    <div class="field">
+      <%= f.label :選考プロセス %>
+      <%= f.text_field :selectionProcess %>
+    </div>
+    
+    </br>
+    
+    <div class="two fields">
+      <div class="field">
+        <%= f.label :勤務開始予定日 %>
+        <%= f.date_select(:startingDate, start_year: Date.today.year, end_year: Date.today.year+2) %>
+      </div>
+      <div class="field">
+        <%= f.label :勤務地 %>
+        <%= f.select :workplace, Job.workplaces.keys, {} %>
+      </div>
+    </div>
+    
+    </br>
+    
+    <div class="field">
+      <%= f.label :アクセス %>
+      <%= f.text_field :access %>
+    </div>
+    
+    </br>
+    
+    <div class="field">
+      <%= f.label :仕事詳細 %>
+      <%= f.text_area :description %>
+    </div>
+    
+    </br>
+    
+    <%= f.submit "変更を保存", class:"ui blue button right floated" %>
+
+  <% end %>
+</end>
